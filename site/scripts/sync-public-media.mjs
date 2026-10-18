@@ -37,14 +37,14 @@ function matchesMagic(bytes, name) {
     return bytes.toString("ascii", 4, 8) === "ftyp";
   return false;
 }
-async function fetchMedia(remotePath, expectedSize = null) {
+async function fetchMedia(remotePath, expectedSize = null, validationPath = remotePath) {
   let latest = "";
   for (const origin of origins) {
     try {
       const response = await fetch(origin + remotePath, { signal: AbortSignal.timeout(20000) });
       if (!response.ok) throw Error("HTTP " + response.status);
       const bytes = Buffer.from(await response.arrayBuffer());
-      if (!matchesMagic(bytes, remotePath)) throw Error("incorrect binary format (possibly HTML)");
+      if (!matchesMagic(bytes, validationPath)) throw Error("incorrect binary format (possibly HTML)");
       if (expectedSize != null && bytes.length !== expectedSize)
         throw Error("size mismatch expected " + expectedSize + " got " + bytes.length);
       return bytes;
@@ -58,7 +58,7 @@ for (const filename of descriptors) {
   const info = JSON.parse(await readFile(filename, "utf8"));
   if (typeof info.url !== "string" || !info.url.startsWith("/__l5e/assets-v1/"))
     throw Error("Unexpected asset path in " + filename);
-  jobs.push({ remotePath: info.url, outputPath: path.join(root, "public", info.url), expectedSize: info.size });
+  jobs.push({ remotePath: info.url, outputPath: path.join(root, "public", info.url), expectedSize: info.size, validationPath: info.content_type === "image/jpeg" ? info.url + ".jpg" : info.url });
 }
 for (const name of binaryPublicFiles)
   jobs.push({ remotePath: "/" + name, outputPath: path.join(root, "public", name), expectedSize: null });
@@ -68,7 +68,7 @@ await Promise.all(Array.from({ length: 5 }, async () => {
   while (next < jobs.length) {
     const job = jobs[next++];
     try {
-      const bytes = await fetchMedia(job.remotePath, job.expectedSize);
+      const bytes = await fetchMedia(job.remotePath, job.expectedSize, job.validationPath);
       await mkdir(path.dirname(job.outputPath), { recursive: true });
       await writeFile(job.outputPath, bytes);
       console.log("OK", job.remotePath, bytes.length);
