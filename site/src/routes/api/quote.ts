@@ -50,8 +50,8 @@ export const Route = createFileRoute("/api/quote")({
         const locale = ["et", "ru", "en"].includes(payload.locale as string)
           ? payload.locale as string : "et";
         const page = clean(payload.source_page, 300);
-        if (name.length < 2 || !/^\\+?[0-9 ()-]{6,35}$/.test(phone) ||
-            (email.length > 0 && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) ||
+        if (name.length < 2 || !/^\+?[0-9 ()-]{6,35}$/.test(phone) ||
+            (email.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) ||
             payload.consent !== true)
           return reply({ ok: false, error: "validation" }, 422);
 
