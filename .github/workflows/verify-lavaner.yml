@@ -24,3 +24,5 @@ jobs:
         run: bun install
       - name: Check production build
         run: bun run build
+      - name: Check independent Cloudflare build
+        run: bun run build:cloudflare
