@@ -26,4 +26,10 @@ done
 
 curl -fsS http://127.0.0.1:4173/sitemap.xml | grep -q 'https://lavaner.ee/'
 curl -fsS http://127.0.0.1:4173/robots.txt | grep -q 'Sitemap:'
+redirect_code=$(curl --silent --output /dev/null --write-out '%{http_code}' --header 'Host: www.lavaner.ee' "http://127.0.0.1:4173/ru/")
+echo "www.lavaner.ee -> canonical HTTPS: $redirect_code"
+if [[ "$redirect_code" != "301" ]]; then
+  echo "Canonical redirect did not return 301"
+  exit 1
+fi
 echo "Cloudflare local SSR, routes, SEO XML and media smoke checks passed"
