@@ -1,0 +1,18 @@
+name: Audit live LAVANER SEO
+on:
+  pull_request:
+    paths: ['site/scripts/audit-live-site.mjs', '.github/workflows/audit-live-site.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read-only live SEO audit
+        run: node site/scripts/audit-live-site.mjs

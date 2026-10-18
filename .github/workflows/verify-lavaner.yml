@@ -1,0 +1,30 @@
+name: Verify LAVANER source
+on:
+  push:
+    branches: [direct-seo-2026-10-18]
+    paths: ['site/**', '.github/workflows/verify-lavaner.yml']
+  pull_request:
+    paths: ['site/**', '.github/workflows/verify-lavaner.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install
+      - name: Check production build
+        run: bun run build
+      - name: Check independent Cloudflare build
+        run: bun run build:cloudflare
+      - name: Smoke-test local Cloudflare routes, sitemap and media
+        run: bash scripts/smoke-cloudflare.sh
