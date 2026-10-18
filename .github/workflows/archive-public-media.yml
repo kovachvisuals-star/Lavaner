@@ -1,7 +1,7 @@
 name: Archive public LAVANER images
 on:
-  push:
-    branches: [direct-seo-2026-10-18]
+  pull_request:
+    branches: [main]
     paths:
       - 'site/scripts/sync-public-media.mjs'
       - '.github/workflows/archive-public-media.yml'
