@@ -1,0 +1,66 @@
+# LAVANER source patch, prepared 2026-10-18
+# Applies to exact code currently held in Lovable project 32dfadb2-874c-4711-82f9-a9d0ae85f1c3.
+# NOT deployed to lavaner.ee. The GitHub repo is not connected to the Lovable deployment.
+# Use `git apply` after obtaining project source. Do not run against an unrelated revision.
+
+diff --git a/src/lib/services-content.ts b/src/lib/services-content.ts
+--- a/src/lib/services-content.ts
++++ b/src/lib/services-content.ts
+@@ -117,7 +117,7 @@
+       h1: "Eramute ehitus Tallinnas ja Harjumaal",
+       title: "Eramute ehitus Tallinnas ja Harjumaal | LAVANER OÜ",
+       description:
+-        "LAVANER OÜ ehitusteenused äri- ja eraobjektidele: planeerimine, teostus ja üleandmine ühe vastutava meeskonnaga. Küsi hinnapakkumist.",
++        "Eramute ehitus Tallinnas ja Harjumaal: planeerimine, ehitustööd, tööde koordineerimine ja üleandmine. Küsi LAVANER OÜ-lt hinnapakkumist.",
+       lead: "Korraldame ja teostame ehitustöid äri- ja eraobjektidel: planeerime etapid, koordineerime spetsialistid ja anname valmis objekti üle kokkulepitud mahus.",
+       forWhom: [
+         "Ettevõtted, kes rajavad või laiendavad äripinda",
+@@ -357,7 +357,7 @@
+       h1: "Maja renoveerimine Tallinnas ja Harjumaal",
+       title: "Maja renoveerimine Tallinnas ja Harjumaal | LAVANER OÜ",
+       description:
+-        "Eramajade ja ridaelamute remont Eestis: sise- ja välistööd, tehnosüsteemid, viimistlus. Üks meeskond ja selged etapid.",
++        "Eramute ja ridaelamute renoveerimine Tallinnas ja Harjumaal: sise- ja välistööd, tehnosüsteemid ning viimistlus. Küsi hinnapakkumist.",
+       lead: "Teeme eramajade, ridaelamute ja suvilate remonti ning renoveerimist: korraldame kõik etapid ühe meeskonnaga ja hoiame objekti kontrolli all algusest lõpuni.",
+       forWhom: [
+         "Majaomanikud, kes plaanivad täisremonti",
+@@ -1074,10 +1074,10 @@
+ 
+   finishing: {
+     et: {
+-      h1: "Siseviimistlustööd",
++      h1: "Siseviimistlustööd Tallinnas ja Harjumaal",
+-      title: "Siseviimistlustööd Tallinnas | LAVANER OÜ",
++      title: "Siseviimistlustööd Tallinnas ja Harjumaal | LAVANER",
+       description:
+-        "Sise- ja välisviimistlus Eestis: seinad, laed, põrandad, plaatimine, värvimine ja dekoratiivkatted. Kvaliteedikontroll igal lõigul.",
++        "Siseviimistlustööd Tallinnas ja Harjumaal: seinte ja lagede viimistlus, värvimine, põrandad ning plaatimistööd. Küsi LAVANER OÜ-lt hinnapakkumist.",
+       lead: "Teostame sise- ja välisviimistlust, pöörates tähelepanu detailidele ja lõpptulemusele: seinad, laed, põrandad, plaatimine, värvimine ja dekoratiivkatted.",
+       forWhom: [
+         "Kliendid, kellel on ehitus- või remonditööd lõppjärgus",
+
+diff --git a/src/lib/services-content-extra.ts b/src/lib/services-content-extra.ts
+--- a/src/lib/services-content-extra.ts
++++ b/src/lib/services-content-extra.ts
+@@ -382,7 +382,7 @@
+       h1: "Elektritööd Tallinnas",
+       title: "Elektritööd Tallinnas ja Harjumaal | LAVANER OÜ",
+       description:
+-        "Elektritööd Tallinnas: juhtmestiku vahetus, kilbid, pistikud, valgustus ja elektritööd remondi käigus. Küsi hinnapakkumist LAVANER OÜ-lt.",
++        "Elektritööd Tallinnas ja Harjumaal: juhtmestiku vahetus, elektrikilbid, pistikud, valgustus ning elektritööd remondi käigus. Küsi hinnapakkumist.",
+       lead: "Teostame elektritöid korterites, eramajades ja äripindadel: uus juhtmestik, elektrikilp, pistikud ja lülitid, valgustus ning elektritööd remondi osana.",
+       forWhom: [
+         "Korteri- ja majaomanikud, kelle elektrisüsteem on vana",
+
+diff --git a/src/components/site/QuoteForm.tsx b/src/components/site/QuoteForm.tsx
+--- a/src/components/site/QuoteForm.tsx
++++ b/src/components/site/QuoteForm.tsx
+@@ -102,7 +102,7 @@
+     const url = `${CONTACT.emailHref}?subject=${encodeURIComponent(
+       "LAVANER — " + t.submit,
+     )}&body=${encodeURIComponent(lines.join("\n"))}`;
+-    track("generate_lead", {
++    track("email_click", {
+       form_name: "quote_form",
+       place,
+       service_page: slug || "home",
