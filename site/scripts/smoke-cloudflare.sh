@@ -32,4 +32,15 @@ if [[ "$redirect_code" != "301" ]]; then
   echo "Canonical redirect did not return 301"
   exit 1
 fi
+# Quote storage must not pretend to accept enquiries without a configured D1 binding.
+quote_status=$(curl -s -o /tmp/lavaner-quote.json -w '%{http_code}' \
+  -X POST 'http://127.0.0.1:4173/api/quote' \
+  -H 'Content-Type: application/json' \
+  --data '{"name":"Test Client","phone":"+37255555555","email":"test@example.invalid","work":"CI only","locale":"et","source_page":"/","consent":true}')
+echo "/api/quote (disabled without D1 binding) => $quote_status"
+if [[ "$quote_status" != "503" ]]; then
+  echo "Quote endpoint unexpectedly accepted or mishandled enquiry without D1"
+  cat /tmp/lavaner-quote.json
+  exit 1
+fi
 echo "Cloudflare local SSR, routes, SEO XML and media smoke checks passed"
