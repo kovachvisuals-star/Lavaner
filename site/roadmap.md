@@ -1,0 +1,7 @@
+- [x] Додати напрямок "Projekteerimine ja disain" у структуру послуг + окремий блок на головній
+- [x] Локальне SEO: естонські адреси без префікса, /ru та /en з префіксом, 301 зі старих адрес
+- [x] Нові сторінки послуг: katustööd, fassaaditööd, vannitoa remont, elektritööd, sanitaartehnilised tööd
+- [x] Сторінка "Tehtud tööd" (без вигаданих об'єктів), контакти з профілем Google
+- [x] Sitemap (78 адрес), robots.txt, canonical, hreflang, schema
+- [ ] Публікація + підключення Google Search Console і подання sitemap (потрібна дія власника)
+- [x] Замінити логотип точним WEBP власника, оновити іконки, OG/schema та перевірити ET/RU/EN
