@@ -17,6 +17,20 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
   }
 });
 
+// Canonicalize the public hostname for portable Cloudflare SSR and Lovable builds.
+// Do not redirect staging hosts; they must remain testable before changing DNS.
+const canonicalMiddleware = createMiddleware().server(({ request, next }) => {
+  const url = new URL(request.url);
+  const hostname = url.hostname.toLowerCase();
+  if (hostname !== "lavaner.ee" && hostname !== "www.lavaner.ee") return next();
+  const requestedProto = request.headers.get("x-forwarded-proto") ?? url.protocol.replace(":", "");
+  const pathname = url.pathname.length > 1 ? url.pathname.replace(/\\/+$/, "") : url.pathname;
+  if (hostname !== "lavaner.ee" || requestedProto === "http" || pathname !== url.pathname) {
+    return Response.redirect(`https://lavaner.ee${pathname}${url.search}`, 301);
+  }
+  return next();
+});
+
 export const startInstance = createStart(() => ({
-  requestMiddleware: [errorMiddleware],
+  requestMiddleware: [canonicalMiddleware, errorMiddleware],
 }));
