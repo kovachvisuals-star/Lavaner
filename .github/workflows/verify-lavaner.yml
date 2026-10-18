@@ -26,3 +26,5 @@ jobs:
         run: bun run build
       - name: Check independent Cloudflare build
         run: bun run build:cloudflare
+      - name: Smoke-test local Cloudflare routes, sitemap and media
+        run: bash scripts/smoke-cloudflare.sh
