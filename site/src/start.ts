@@ -24,7 +24,8 @@ const canonicalMiddleware = createMiddleware().server(({ request, next }) => {
   const hostname = url.hostname.toLowerCase();
   if (hostname !== "lavaner.ee" && hostname !== "www.lavaner.ee") return next();
   const requestedProto = request.headers.get("x-forwarded-proto") ?? url.protocol.replace(":", "");
-  const pathname = url.pathname.length > 1 ? url.pathname.replace(/\\/+$/, "") : url.pathname;
+  let pathname = url.pathname;
+  while (pathname.length > 1 && pathname.endsWith("/")) pathname = pathname.slice(0, -1);
   if (hostname !== "lavaner.ee" || requestedProto === "http" || pathname !== url.pathname) {
     return Response.redirect(`https://lavaner.ee${pathname}${url.search}`, 301);
   }
