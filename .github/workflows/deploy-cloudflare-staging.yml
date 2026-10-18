@@ -1,0 +1,35 @@
+name: Deploy LAVANER to Cloudflare staging
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: site
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: direct-seo-2026-10-18
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Require authorized Cloudflare staging credentials
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::Missing repository secrets CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID. No deploy attempted."
+            exit 1
+          fi
+      - name: Install dependencies
+        run: bun install
+      - name: Build independent SSR website
+        run: bun run build:cloudflare
+      - name: Deploy *staging* Worker only, never main lavaner.ee domain
+        run: bunx wrangler deploy --config wrangler.jsonc
