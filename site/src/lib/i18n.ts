@@ -160,7 +160,7 @@ export const UI: Record<Lang, UIStrings> = {
     phoneNoteEt: "Eesti keeles",
     emailLabel: "E-post",
     serviceAreaLabel: "Teeninduspiirkond",
-    serviceAreaValue: "Teenindame kliente üle Eesti",
+    serviceAreaValue: "Tallinn, Maardu, Viimsi ja Harjumaa",
     sinceBadge: "Tegutseme alates 2014. aastast",
     breadcrumbHome: "Avaleht",
     allServices: "Kõik teenused",
@@ -204,7 +204,7 @@ export const UI: Record<Lang, UIStrings> = {
     phoneNoteEt: "Эстонский",
     emailLabel: "E-mail",
     serviceAreaLabel: "Зона обслуживания",
-    serviceAreaValue: "Обслуживаем клиентов по всей Эстонии",
+    serviceAreaValue: "Таллинн, Маарду, Виймси и Харьюмаа",
     sinceBadge: "Работаем с 2014 года",
     breadcrumbHome: "Главная",
     allServices: "Все услуги",
@@ -248,7 +248,7 @@ export const UI: Record<Lang, UIStrings> = {
     phoneNoteEt: "Estonian",
     emailLabel: "Email",
     serviceAreaLabel: "Service area",
-    serviceAreaValue: "We serve clients across Estonia",
+    serviceAreaValue: "Tallinn, Maardu, Viimsi and Harjumaa",
     sinceBadge: "We have been operating since 2014",
     breadcrumbHome: "Home",
     allServices: "All services",
@@ -311,7 +311,7 @@ export const ADVANTAGES: Record<Lang, string[]> = {
 };
 
 export const GEOGRAPHY: Record<Lang, string> = {
-  et: "Tallinn, Harjumaa ja kogu Eesti. Objekti asukoha täpsustame enne ülevaatust.",
-  ru: "Таллинн, Харьюмаа и вся Эстония. Точное расположение объекта уточняем перед осмотром.",
-  en: "Tallinn, Harjumaa and all of Estonia. We confirm the exact location before the site visit.",
+  et: "Tallinn, Maardu, Viimsi ja Harjumaa. Objekti asukoha täpsustame enne ülevaatust.",
+  ru: "Таллинн, Маарду, Виймси и Харьюмаа. Точное расположение объекта уточняем перед осмотром.",
+  en: "Tallinn, Maardu, Viimsi and Harjumaa. We confirm the exact location before the site visit.",
 };
