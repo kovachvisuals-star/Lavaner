@@ -1,4 +1,5 @@
 import { SiteLink } from "@/components/site/SiteLink";
+import { TurnstileChallenge } from "@/components/site/TurnstileChallenge";
 import { useRef, useState, type FormEvent } from "react";
 
 import { track } from "@/lib/analytics";
@@ -80,7 +81,9 @@ const FORM: Record<
 };
 
 // Off until Cloudflare D1, delivery verification and anti-spam protection are configured.
-const DIRECT_QUOTE_ENABLED = import.meta.env.VITE_DIRECT_QUOTE_ENABLED === "true";
+const TURNSTILE_SITE_KEY = (import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined)?.trim() ?? "";
+const DIRECT_QUOTE_ENABLED =
+  import.meta.env.VITE_DIRECT_QUOTE_ENABLED === "true" && Boolean(TURNSTILE_SITE_KEY);
 
 export function QuoteForm({ place = "page" }: { compact?: boolean; place?: string }) {
   const lang = useLang();
@@ -90,6 +93,8 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<"validation" | "delivery" | null>(null);
   const [sending, setSending] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [challengeAttempt, setChallengeAttempt] = useState(0);
   const started = useRef(false);
 
   /** form_start — только при первом взаимодействии с формой. */
@@ -113,6 +118,8 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
     setError(null);
 
     if (DIRECT_QUOTE_ENABLED) {
+      if (!turnstileToken) return;
+      setSent(false);
       setSending(true);
       try {
         const response = await fetch("/api/quote", {
@@ -127,6 +134,7 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
             locale: lang,
             source_page: window.location.pathname,
             consent: data.get("consent") != null,
+            turnstile_token: turnstileToken,
           }),
         });
         if (response.status !== 201) throw new Error("Unable to store the enquiry");
@@ -142,6 +150,9 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
         setError("delivery");
       } finally {
         setSending(false);
+        setTurnstileToken(null);
+        // Turnstile tokens are single-use. Recreate the widget for a retry.
+        setChallengeAttempt((n) => n + 1);
       }
       return;
     }
@@ -243,9 +254,17 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
           </span>
         </label>
 
+        {DIRECT_QUOTE_ENABLED ? (
+          <TurnstileChallenge
+            key={challengeAttempt}
+            siteKey={TURNSTILE_SITE_KEY}
+            onToken={setTurnstileToken}
+          />
+        ) : null}
+
         <button
           type="submit"
-          disabled={sending}
+          disabled={sending || (DIRECT_QUOTE_ENABLED && !turnstileToken)}
           aria-busy={sending}
           className="mt-4 w-full rounded bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90 sm:w-auto"
         >
