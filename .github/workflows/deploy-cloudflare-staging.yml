@@ -25,7 +25,7 @@ jobs:
             exit 1
           fi
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
       - name: Build independent SSR site
         run: bun run build:cloudflare
       - name: Deploy staging Worker only
