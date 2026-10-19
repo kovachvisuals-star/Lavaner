@@ -12,7 +12,7 @@ const checks = [
     return form.includes('track("email_click", {') &&
       form.includes('if (response.status !== 201) throw new Error(') &&
       /if \(response\.status !== 201\) throw new Error\([^\n]+\);\s*track\("generate_lead", \{/.test(form) &&
-      !/track\("generate_lead", \{[\s\S]*?window\.location\.href = url/.test(form);
+      /track\("email_click", \{[\s\S]*?window\.location\.href = url/.test(form);
   }],
   ['Service pages for roof, facade and houses exist', () => {
     const routes = load('src/lib/routes-map.ts');
