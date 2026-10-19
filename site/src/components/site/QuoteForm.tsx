@@ -196,17 +196,17 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
       noValidate
     >
       <div>
-        <label htmlFor={`${formId}-name` className={label}>
+        <label htmlFor={`${formId}-name`} className={label}>
           {t.name} *
         </label>
-        <input id={`${formId}-name` name="name" required autoComplete="name" className={field} />
+        <input id={`${formId}-name`} name="name" required autoComplete="name" className={field} />
       </div>
       <div>
-        <label htmlFor={`${formId}-phone` className={label}>
+        <label htmlFor={`${formId}-phone`} className={label}>
           {t.phone} *
         </label>
         <input
-          id={`${formId}-phone`
+          id={`${formId}-phone`}
           name="phone"
           type="tel"
           required
@@ -216,11 +216,11 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
         />
       </div>
       <div className="sm:col-span-2">
-        <label htmlFor={`${formId}-email` className={label}>
+        <label htmlFor={`${formId}-email`} className={label}>
           {t.email}
         </label>
         <input
-          id={`${formId}-email`
+          id={`${formId}-email`}
           name="email"
           type="email"
           autoComplete="email"
@@ -229,11 +229,11 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
         />
       </div>
       <div className="sm:col-span-2">
-        <label htmlFor={`${formId}-work` className={label}>
+        <label htmlFor={`${formId}-work`} className={label}>
           {t.work}
         </label>
         <textarea
-          id={`${formId}-work`
+          id={`${formId}-work`}
           name="work"
           rows={3}
           className={field}
@@ -242,8 +242,8 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
       </div>
 
       <div className="hidden" aria-hidden="true">
-        <label htmlFor={`${formId}-company`>Company</label>
-        <input id={`${formId}-company` name="company" tabIndex={-1} autoComplete="off" />
+        <label htmlFor={`${formId}-company`}>Company</label>
+        <input id={`${formId}-company`} name="company" tabIndex={-1} autoComplete="off" />
       </div>
 
       <div className="sm:col-span-2">
