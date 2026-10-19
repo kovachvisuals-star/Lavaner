@@ -37,8 +37,15 @@ const canonicalMiddleware = createMiddleware().server(({ request, next }) => {
 const stagingNoindexMiddleware = createMiddleware().server(async ({ request, next }) => {
   const host = new URL(request.url).hostname.toLowerCase();
   const result = await next();
+  // Basic browser security: avoid exposing referrer paths to unrelated origins,
+  // MIME sniffing and unnecessary browser-device capabilities.
+  result.response.headers.set("X-Content-Type-Options", "nosniff");
+  result.response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  result.response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  result.response.headers.set("X-Frame-Options", "SAMEORIGIN");
   if (host.endsWith(".workers.dev") || host.endsWith(".pages.dev")) {
     result.response.headers.set("X-Robots-Tag", "noindex, nofollow");
+    result.response.headers.set("Cache-Control", "no-store");
   }
   return result;
 });
