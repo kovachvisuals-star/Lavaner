@@ -358,7 +358,7 @@ const BASE_SERVICE_CONTENT = {
       title: "Maja renoveerimine Tallinnas ja Harjumaal | LAVANER OÜ",
       description:
         "Eramute ja ridaelamute renoveerimine Tallinnas ja Harjumaal: sise- ja välistööd, tehnosüsteemid ning viimistlus. Küsi hinnapakkumist.",
-      lead: "Renoveerime eramaju, vanemaid maju ja ridaelamuid Tallinnas, Maardus ning mujal Harjumaal. Vaatame üle konstruktsioonid ja tehnosüsteemid, planeerime remondietapid ning viime sise- ja välisviimistluse ühe tööplaani alla.",
+      lead: "Renoveerime eramaju, vanemaid maju ja ridaelamuid Tallinnas, Maardus ning mujal Harjumaal. Vaatame üle konstruktsioonid ja tehnosüsteemid, planeerime remondietapid ning viime sise- ja välisviimistluse ühe tööplaani alla. Hinnapakkumise küsimisel märgi maja asukoht, ligikaudne pindala ja kavandatud tööd.",
       forWhom: [
         "Majaomanikud, kes plaanivad täisremonti",
         "Vanema maja omanikud, kes soovivad seda kaasajastada",
