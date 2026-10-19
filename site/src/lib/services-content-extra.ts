@@ -137,7 +137,7 @@ export const EXTRA_SERVICE_CONTENT: Record<ExtraKey, Record<Lang, ServiceContent
       title: "Fassaaditööd Tallinnas ja Harjumaal | LAVANER OÜ",
       description:
         "Fassaadi soojustamine, krohvimine, voodrivahetus ja välisviimistlus Tallinnas ning Harjumaal. LAVANER OÜ teeb fassaaditööd ühe meeskonnaga.",
-      lead: "Teeme fassaaditöid Tallinnas ja Harjumaal: fassaadi soojustamine, krohvimine, puitvoodri paigaldus, sokli viimistlus ja välisviimistluse remont. Sobiva lahenduse ja tööde mahu määrame maja seisukorra järgi.",
+      lead: "Teeme fassaaditöid Tallinnas ja Harjumaal: fassaadi soojustamine, krohvimine, puitvoodri paigaldus, sokli viimistlus ja välisviimistluse remont. Töötame Tallinnas, Maardus, Viimsis ja mujal Harjumaal. Pakkumise koostamiseks kirjeldage hoone tüüpi, fassaadi materjali, ligikaudset pindala ja objekti asukohta ning lisage võimalusel fotod. Sobiva lahenduse ja tööde mahu määrame maja seisukorra järgi.",
       forWhom: [
         "Eramajade omanikud, kes soovivad hoone soojemaks ja korrastatuks muuta",
         "Korteriühistud, kes plaanivad fassaadi renoveerimist",
@@ -260,7 +260,7 @@ export const EXTRA_SERVICE_CONTENT: Record<ExtraKey, Record<Lang, ServiceContent
       title: "Vannitoa remont Tallinnas | LAVANER OÜ",
       description:
         "Vannitoa täisremont Tallinnas: lammutus, hüdroisolatsioon, plaatimine, torustik ja elektritööd ühe meeskonnaga. Küsi hinnapakkumist LAVANER OÜ-lt.",
-      lead: "Teeme vannitoa remonti Tallinnas ja Harjumaal: vana vannitoa lammutus, vee- ja kanalisatsioonitorude vahetus, hüdroisolatsioon, plaatimistööd, valgustus ning sanitaartehnika paigaldus. Tööde kestus ja hind sõltuvad vannitoa seisukorrast.",
+      lead: "Teeme vannitoa remonti Tallinnas ja Harjumaal: vana vannitoa lammutus, vee- ja kanalisatsioonitorude vahetus, hüdroisolatsioon, plaatimistööd, valgustus ning sanitaartehnika paigaldus. Töötame Tallinnas, Maardus ja mujal Harjumaal. Täpsema pakkumise jaoks saatke vannitoa mõõdud, soovitud tööde kirjeldus, objekti asukoht ja võimalusel fotod. Tööde kestus ja hind sõltuvad vannitoa seisukorrast.",
       forWhom: [
         "Korteriomanikud, kelle vannituba on vana või lekib",
         "Eramaja omanikud, kes soovivad vannituba ümber planeerida",
@@ -383,7 +383,7 @@ export const EXTRA_SERVICE_CONTENT: Record<ExtraKey, Record<Lang, ServiceContent
       title: "Elektritööd Tallinnas ja Harjumaal | LAVANER OÜ",
       description:
         "Elektritööd Tallinnas ja Harjumaal: juhtmestiku vahetus, elektrikilbid, pistikud, valgustus ning elektritööd remondi käigus. Küsi hinnapakkumist.",
-      lead: "Teostame elektritöid korterites, eramajades ja äripindadel: uus juhtmestik, elektrikilp, pistikud ja lülitid, valgustus ning elektritööd remondi osana.",
+      lead: "Teostame elektritöid korterites, eramajades ja äripindadel: uus juhtmestik, elektrikilp, pistikud ja lülitid, valgustus ning elektritööd remondi osana Tallinnas, Maardus ja mujal Harjumaal. Hinnapäringus täpsustage ruumide arv, olemasoleva süsteemi seisukord ja objekti asukoht. Elektripaigaldiste tööd tuleb teha nõutava pädevusega spetsialistide poolt.",
       forWhom: [
         "Korteri- ja majaomanikud, kelle elektrisüsteem on vana",
         "Kliendid, kes teevad täisremonti ja vajavad uut juhtmestikku",
@@ -506,7 +506,7 @@ export const EXTRA_SERVICE_CONTENT: Record<ExtraKey, Record<Lang, ServiceContent
       title: "Sanitaartehnilised tööd Tallinnas ja Harjumaal | LAVANER OÜ",
       description:
         "Santehnilised tööd Tallinnas: vee- ja kanalisatsioonitorustik, segistid, WC, dušinurgad, boilerid ja küttesüsteemi tööd. Küsi pakkumist LAVANER OÜ-lt.",
-      lead: "Teostame sanitaartehnilisi töid korterites, eramajades ja äripindadel: torustiku vahetus, sanitaartehnika paigaldus ning küttesüsteemi tööd.",
+      lead: "Teostame sanitaartehnilisi töid korterites, eramajades ja äripindadel: torustiku vahetus, sanitaartehnika paigaldus ning küttesüsteemi tööd Tallinnas, Maardus ja mujal Harjumaal. Hinnapäringuks kirjeldage probleemi, tööde ulatust ja objekti asukohta ning lisage võimalusel fotod.",
       forWhom: [
         "Korteriomanikud, kes vahetavad vana torustikku",
         "Eramaja omanikud, kes ehitavad või uuendavad süsteeme",
