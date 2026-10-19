@@ -8,7 +8,7 @@ type QuoteDb = {
     bind(...values: unknown[]): { run(): Promise<unknown> };
   };
 };
-type QuoteEnv = { LEADS?: QuoteDb; LEADS_ENABLED?: string };
+type QuoteEnv = { LEADS?: QuoteDb; LEADS_ENABLED?: string; TURNSTILE_SECRET?: string };
 
 function reply(data: unknown, status = 200) {
   return Response.json(data, {
@@ -50,6 +50,7 @@ export const Route = createFileRoute("/api/quote")({
         const locale = ["et", "ru", "en"].includes(payload.locale as string)
           ? payload.locale as string : "et";
         const page = clean(payload.source_page, 300);
+        const challenge = clean(payload.turnstile_token, 2049);
         if (name.length < 2 || !/^\+?[0-9 ()-]{6,35}$/.test(phone) ||
             (email.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) ||
             payload.consent !== true)
@@ -64,8 +65,36 @@ export const Route = createFileRoute("/api/quote")({
         } catch {
           return reply({ ok: false, error: "not_configured" }, 503);
         }
-        if (!settings.LEADS || settings.LEADS_ENABLED !== "true")
+        if (!settings.LEADS || settings.LEADS_ENABLED !== "true" || !settings.TURNSTILE_SECRET)
           return reply({ ok: false, error: "not_configured" }, 503);
+        // CAPTCHA is mandatory for the direct-submission mode. Validate a
+        // single-use, short-lived token against the actual request hostname.
+        if (!challenge || challenge.length > 2048)
+          return reply({ ok: false, error: "challenge_required" }, 422);
+        try {
+          const verification = await fetch(
+            "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams({
+                secret: settings.TURNSTILE_SECRET,
+                response: challenge,
+              }),
+              signal: AbortSignal.timeout(8000),
+            },
+          );
+          if (!verification.ok)
+            return reply({ ok: false, error: "verification_unavailable" }, 503);
+          const result: unknown = await verification.json();
+          if (!result || typeof result !== "object")
+            return reply({ ok: false, error: "verification_unavailable" }, 503);
+          const check = result as { success?: boolean; hostname?: string };
+          if (check.success !== true || check.hostname !== siteUrl.hostname)
+            return reply({ ok: false, error: "challenge_failed" }, 403);
+        } catch {
+          return reply({ ok: false, error: "verification_unavailable" }, 503);
+        }
         try {
           const id = crypto.randomUUID();
           const now = new Date().toISOString();
