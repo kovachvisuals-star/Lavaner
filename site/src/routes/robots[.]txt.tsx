@@ -15,7 +15,7 @@ export const Route = createFileRoute("/robots.txt")({
         const body = SITE_PAUSED
           ? PAUSED_ROBOTS_TXT
           : stagingHost
-            ? "User-agent: *\\nDisallow: /\\n"
+            ? "User-agent: *\nDisallow: /\n"
             : `User-agent: *
 Allow: /
 
