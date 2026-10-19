@@ -28,7 +28,7 @@ jobs:
             exit 1
           fi
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
       - name: Build independent SSR website
         run: bun run build:cloudflare
       - name: Deploy *staging* Worker only, never main lavaner.ee domain
