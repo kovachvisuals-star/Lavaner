@@ -1,10 +1,10 @@
 import { SiteLink } from "@/components/site/SiteLink";
 import { TurnstileChallenge } from "@/components/site/TurnstileChallenge";
-import { useRef, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 
 import { track } from "@/lib/analytics";
 import { SITE_PAUSED } from "@/lib/site-status";
-import { CONTACT, UI, type Lang } from "@/lib/i18n";
+import { CONTACT, UI, primaryPhone, type Lang } from "@/lib/i18n";
 import { pageUrl } from "@/lib/routes-map";
 import { useCurrentSlug, useLang } from "@/lib/use-lang";
 
@@ -38,7 +38,7 @@ const FORM: Record<
     submit: "Saada päring",
     required: "Palun täitke nimi ja telefon ning nõustuge andmetöötlusega.",
     success:
-      "Aitäh! Päring on ette valmistatud teie e-posti programmis. Kui see ei avanenud, kirjutage info@lavaner.ee.",
+      "Päring avatakse e-posti programmis. Seda EI OLE veel saadetud — vajutage oma e-posti rakenduses „Saada“. Kui rakendus ei avane, kirjutage info@lavaner.ee või helistage.",
     stored: "Aitäh! Teie päring on vastu võetud.",
     deliveryError: "Päringut ei õnnestunud saata. Palun kirjutage info@lavaner.ee või helistage meile.",
     openingEmail: "Ava e-post päringu saatmiseks",
@@ -55,7 +55,7 @@ const FORM: Record<
     submit: "Отправить заявку",
     required: "Заполните имя и телефон и подтвердите согласие на обработку данных.",
     success:
-      "Спасибо! Заявка подготовлена в вашей почтовой программе. Если она не открылась — напишите на info@lavaner.ee.",
+      "Письмо откроется в вашей почтовой программе. Заявка ЕЩЁ НЕ ОТПРАВЛЕНА — нажмите «Отправить» в почте. Если программа не открылась, напишите на info@lavaner.ee или позвоните.",
     stored: "Спасибо! Ваша заявка получена.",
     deliveryError: "Не удалось отправить заявку. Напишите на info@lavaner.ee или позвоните нам.",
     openingEmail: "Открыть почту для отправки заявки",
@@ -72,7 +72,7 @@ const FORM: Record<
     submit: "Send enquiry",
     required: "Please fill in your name and phone and confirm the data consent.",
     success:
-      "Thank you! The enquiry is prepared in your email client. If it did not open, write to info@lavaner.ee.",
+      "Your email app should open with a draft. The enquiry HAS NOT BEEN SENT — press Send in your email app. If it does not open, email info@lavaner.ee or call us.",
     stored: "Thank you! Your enquiry has been received.",
     deliveryError: "We couldn’t submit your enquiry. Please email info@lavaner.ee or call us.",
     openingEmail: "Open email to send enquiry",
@@ -88,6 +88,8 @@ const DIRECT_QUOTE_ENABLED =
 export function QuoteForm({ place = "page" }: { compact?: boolean; place?: string }) {
   const lang = useLang();
   const slug = useCurrentSlug();
+  const formId = useId();
+  const phone = primaryPhone(lang);
   const t = FORM[lang];
   const ui = UI[lang];
   const [sent, setSent] = useState(false);
@@ -113,6 +115,7 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
     if (data.get("company")) return; // honeypot
     if (!data.get("name") || !data.get("phone") || !data.get("consent")) {
       setError("validation");
+      track("form_submit_error", { form_name: "quote_form", place, reason: "validation" });
       return;
     }
     setError(null);
@@ -148,6 +151,7 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
       } catch {
         setSent(false);
         setError("delivery");
+        track("form_submit_error", { form_name: "quote_form", place, reason: "delivery" });
       } finally {
         setSending(false);
         setTurnstileToken(null);
@@ -164,6 +168,8 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
       "",
       `${t.work}`,
       String(data.get("work") || "—"),
+      "",
+      `LAVANER page: ${window.location.pathname}`,
     ];
     const url = `${CONTACT.emailHref}?subject=${encodeURIComponent(
       "LAVANER — " + t.submit,
@@ -190,17 +196,17 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
       noValidate
     >
       <div>
-        <label htmlFor="qf-name" className={label}>
+        <label htmlFor={`${formId}-name` className={label}>
           {t.name} *
         </label>
-        <input id="qf-name" name="name" required autoComplete="name" className={field} />
+        <input id={`${formId}-name` name="name" required autoComplete="name" className={field} />
       </div>
       <div>
-        <label htmlFor="qf-phone" className={label}>
+        <label htmlFor={`${formId}-phone` className={label}>
           {t.phone} *
         </label>
         <input
-          id="qf-phone"
+          id={`${formId}-phone`
           name="phone"
           type="tel"
           required
@@ -210,11 +216,11 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
         />
       </div>
       <div className="sm:col-span-2">
-        <label htmlFor="qf-email" className={label}>
+        <label htmlFor={`${formId}-email` className={label}>
           {t.email}
         </label>
         <input
-          id="qf-email"
+          id={`${formId}-email`
           name="email"
           type="email"
           autoComplete="email"
@@ -223,11 +229,11 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
         />
       </div>
       <div className="sm:col-span-2">
-        <label htmlFor="qf-work" className={label}>
+        <label htmlFor={`${formId}-work` className={label}>
           {t.work}
         </label>
         <textarea
-          id="qf-work"
+          id={`${formId}-work`
           name="work"
           rows={3}
           className={field}
@@ -236,8 +242,8 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
       </div>
 
       <div className="hidden" aria-hidden="true">
-        <label htmlFor="qf-company">Company</label>
-        <input id="qf-company" name="company" tabIndex={-1} autoComplete="off" />
+        <label htmlFor={`${formId}-company`>Company</label>
+        <input id={`${formId}-company` name="company" tabIndex={-1} autoComplete="off" />
       </div>
 
       <div className="sm:col-span-2">
@@ -282,7 +288,7 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
           </p>
         ) : null}
         <p className="mt-3 text-xs text-muted-foreground">
-          {ui.emailLabel}: <a href={CONTACT.emailHref} className="underline hover:text-accent">{CONTACT.email}</a> · {ui.serviceAreaValue}
+          {ui.emailLabel}: <a href={CONTACT.emailHref} className="underline hover:text-accent">{CONTACT.email}</a> · <a href={phone.href} onClick={() => track("phone_click", { place: "quote_form", line: phone.key })} className="underline hover:text-accent">{phone.number}</a> · {ui.serviceAreaValue}
         </p>
       </div>
     </form>
