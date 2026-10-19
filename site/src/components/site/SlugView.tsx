@@ -80,7 +80,7 @@ export function slugHead(lang: Lang, slug: string) {
       description: c.description,
       image: SERVICE_PHOTO[resolved.key],
       jsonLd: [
-        serviceJsonLd({ name: c.h1, description: c.description, url, lang }),
+        serviceJsonLd({ name: c.h1, description: c.description, url, lang, image: SERVICE_PHOTO[resolved.key] }),
         faqJsonLd(c.faq),
         breadcrumbJsonLd([
           { name: UI[lang].breadcrumbHome, url: homeUrl(lang) },
