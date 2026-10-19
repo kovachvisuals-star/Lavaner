@@ -46,18 +46,18 @@ fi
 # Cloudflare staging must NOT expose its 78 canonical URLs to crawlers.
 staging_robots=$(curl -fsS --header 'Host: lavaner-staging.example.workers.dev' 'http://127.0.0.1:4173/robots.txt')
 echo "$staging_robots"
-echo "$staging_robots" | grep -q '^Disallow: /
+echo "$staging_robots" | grep -q '^Disallow: /$'
 
 if echo "$staging_robots" | grep -q '^Sitemap:'; then
   echo "Staging robots.txt must not advertise the production sitemap"
   exit 1
 fi
 staging_header=$(curl -s -D - -o /dev/null --header 'Host: lavaner-staging.example.workers.dev' 'http://127.0.0.1:4173/robots.txt')
-echo "$staging_header" | tr -d '\r' | grep -qi '^X-Robots-Tag: noindex, nofollow
+echo "$staging_header" | tr -d '\r' | grep -qi '^X-Robots-Tag: noindex, nofollow$'
 
 # In addition to robots.txt, protect SSR HTML from accidental duplicate indexing.
 staging_html_headers=$(curl -s -D - -o /dev/null --header 'Host: lavaner-staging.example.workers.dev' 'http://127.0.0.1:4173/')
-echo "$staging_html_headers" | tr -d '\r' | grep -qi '^X-Robots-Tag: noindex, nofollow
+echo "$staging_html_headers" | tr -d '\r' | grep -qi '^X-Robots-Tag: noindex, nofollow$'
 
 production_html_headers=$(curl -s -D - -o /dev/null --header 'Host: lavaner.ee' --header 'X-Forwarded-Proto: https' 'http://127.0.0.1:4173/')
 if echo "$production_html_headers" | tr -d '\r' | grep -qi '^X-Robots-Tag: noindex'; then
@@ -71,6 +71,6 @@ for header in 'X-Content-Type-Options: nosniff' 'Referrer-Policy: strict-origin-
     exit 1
   }
 done
-echo "$staging_html_headers" | tr -d '\r' | grep -qi '^Cache-Control: no-store
+echo "$staging_html_headers" | tr -d '\r' | grep -qi '^Cache-Control: no-store$'
 
 echo "Cloudflare local SSR, routes, SEO XML and media smoke checks passed"
