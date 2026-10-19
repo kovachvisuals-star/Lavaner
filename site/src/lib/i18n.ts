@@ -26,7 +26,7 @@ export const CONTACT = {
   phoneRuHref: "tel:+37256629887",
   phoneEt: "+372 5809 7574",
   phoneEtHref: "tel:+37258097574",
-  serviceArea: "Tallinn, Harjumaa, kogu Eesti",
+  serviceArea: "Tallinn, Maardu, Viimsi ja Harjumaa",
   /** Реальный профиль компании в Google (передан владельцем). */
   googleBusinessUrl:
     "https://www.google.com/search?q=LAVANER+O%C3%9C&stick=H4sIAAAAAAAA_-NgU1I1qDBJMjU2NAAC89Sk1JRUQyuDCvPERLOktCQTw8Q0szQzI5NFrNw-jmGOfq5BCv6H5wAAAS8zojcAAAA",
