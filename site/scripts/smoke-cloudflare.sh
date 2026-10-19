@@ -64,4 +64,13 @@ if echo "$production_html_headers" | tr -d '\r' | grep -qi '^X-Robots-Tag: noind
   echo "Production HTML must stay indexable"
   exit 1
 fi
+# Baseline security headers must be present for HTML in both environments.
+for header in 'X-Content-Type-Options: nosniff' 'Referrer-Policy: strict-origin-when-cross-origin' 'X-Frame-Options: SAMEORIGIN'; do
+  echo "$production_html_headers" | tr -d '\r' | grep -qi "^$header$" || {
+    echo "Missing production security header $header"
+    exit 1
+  }
+done
+echo "$staging_html_headers" | tr -d '\r' | grep -qi '^Cache-Control: no-store
+
 echo "Cloudflare local SSR, routes, SEO XML and media smoke checks passed"
