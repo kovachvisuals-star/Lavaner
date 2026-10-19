@@ -1078,7 +1078,7 @@ const BASE_SERVICE_CONTENT = {
       title: "Siseviimistlustööd Tallinnas ja Harjumaal | LAVANER",
       description:
         "Siseviimistlustööd Tallinnas ja Harjumaal: seinte ja lagede viimistlus, värvimine, põrandad ning plaatimistööd. Küsi LAVANER OÜ-lt hinnapakkumist.",
-      lead: "Teeme siseviimistlust Tallinnas ja Harjumaal korterites, eramutes ja äripindadel. Tööde hulka kuuluvad maalritööd, pahteldamine, seinte ja lagede värvimine, plaatimistööd ning põrandate paigaldus. Tööde mahu ja hinnapakkumise lepime kokku pärast objekti ülevaatust.",
+      lead: "Teeme siseviimistlustöid Tallinnas, Maardus ja mujal Harjumaal korterites, eramutes ning äripindadel. Tööde hulka kuuluvad maalritööd, pahteldamine, seinte ja lagede värvimine, plaatimistööd ning põrandate paigaldus. Kirjelda objekti asukohta ja tööde mahtu – koostame hinnapakkumise pärast vajaduse korral tehtavat ülevaatust.",
       forWhom: [
         "Kliendid, kellel on ehitus- või remonditööd lõppjärgus",
         "Korteri- ja majaomanikud",
