@@ -449,6 +449,7 @@ function ContactsBlock({ lang }: { lang: Lang }) {
             </li>
             <li className="pt-2 text-xs leading-relaxed text-muted-foreground">
               {ui.companyDetails}: <BrandText>{PLACEHOLDERS.legalName}</BrandText>
+              <span className="block">{ui.registryCodeLabel}: {PLACEHOLDERS.registryCode}</span>
               <span className="block"><BrandText>{ui.sinceBadge}</BrandText></span>
               <span className="block">{ui.experienceBadge}</span>
             </li>
