@@ -1,0 +1,29 @@
+name: SEO source validation
+
+on:
+  pull_request:
+    paths:
+      - 'site/**'
+      - '.github/workflows/seo-source-check.yml'
+  push:
+    branches:
+      - direct-seo-2026-10-18
+    paths:
+      - 'site/**'
+      - '.github/workflows/seo-source-check.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+      - name: Validate source
+        run: bun run check:source
+      - name: Build production bundle
+        run: bun run build
