@@ -32,6 +32,17 @@ const canonicalMiddleware = createMiddleware().server(({ request, next }) => {
   return next();
 });
 
+// Search engines must not index a separate preview copy as duplicate company pages.
+// Applies only to provider staging hostnames; the production domain is unaffected.
+const stagingNoindexMiddleware = createMiddleware().server(async ({ request, next }) => {
+  const host = new URL(request.url).hostname.toLowerCase();
+  const result = await next();
+  if (host.endsWith(".workers.dev") || host.endsWith(".pages.dev")) {
+    result.response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  }
+  return result;
+});
+
 export const startInstance = createStart(() => ({
-  requestMiddleware: [canonicalMiddleware, errorMiddleware],
+  requestMiddleware: [stagingNoindexMiddleware, canonicalMiddleware, errorMiddleware],
 }));
