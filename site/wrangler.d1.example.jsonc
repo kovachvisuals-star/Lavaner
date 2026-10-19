@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lavaner-staging",
+  "compatibility_date": "2026-10-18",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "@tanstack/react-start/server-entry",
+  "observability": { "enabled": true },
+  "vars": { "LEADS_ENABLED": "false" },
+  "d1_databases": [
+    {
+      "binding": "LEADS",
+      "database_name": "lavaner-leads",
+      "database_id": "REPLACE_WITH_YOUR_NEW_D1_DATABASE_ID",
+      "migrations_dir": "db/migrations"
+    }
+  ]
+}
