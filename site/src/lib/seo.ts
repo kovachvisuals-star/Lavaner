@@ -24,13 +24,13 @@ export function buildHead({
   resolved,
   title,
   description,
-  image: _image,
+  image,
   type = "website",
   noindex,
   jsonLd = [],
 }: HeadInput) {
   const url = absoluteUrl(alternateUrl(lang, resolved));
-  const ogImage = DEFAULT_OG_IMAGE;
+  const ogImage = image ? (image.startsWith("https://") ? image : absoluteUrl(image)) : DEFAULT_OG_IMAGE;
 
   const meta: Record<string, string>[] = [
     { title },
@@ -142,6 +142,7 @@ export function serviceJsonLd(opts: {
   description: string;
   url: string;
   lang: Lang;
+  image?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -149,6 +150,7 @@ export function serviceJsonLd(opts: {
     name: opts.name,
     description: opts.description,
     serviceType: opts.name,
+    ...(opts.image ? { image: opts.image.startsWith("https://") ? opts.image : absoluteUrl(opts.image) } : {}),
     url: opts.url.startsWith("http") ? opts.url : absoluteUrl(opts.url),
     provider: {
       "@type": "GeneralContractor",
@@ -163,7 +165,8 @@ export function serviceJsonLd(opts: {
       { "@type": "AdministrativeArea", name: "Harjumaa" },
       { "@type": "Country", name: "Estonia" },
     ],
-    availableLanguage: ["et", "ru"],
+    availableLanguage: ["et", "ru", "en"],
+    inLanguage: HREFLANG[opts.lang],
   };
 }
 
