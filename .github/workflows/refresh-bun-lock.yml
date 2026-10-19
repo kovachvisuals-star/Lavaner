@@ -1,0 +1,34 @@
+name: Refresh independent Bun lockfile
+on:
+  push:
+    branches: [direct-seo-2026-10-18]
+    paths: ['site/package.json']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update-lockfile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: direct-seo-2026-10-18
+          persist-credentials: true
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Resolve declared dependencies and refresh lockfile
+        working-directory: site
+        run: bun install
+      - name: Commit only the generated lockfile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/bun.lock
+          if git diff --cached --quiet; then
+            echo "Lockfile is current"
+            exit 0
+          fi
+          git commit -m "build: refresh lockfile for Cloudflare worker dependencies"
+          git push origin HEAD:direct-seo-2026-10-18
