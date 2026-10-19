@@ -55,4 +55,13 @@ fi
 staging_header=$(curl -s -D - -o /dev/null --header 'Host: lavaner-staging.example.workers.dev' 'http://127.0.0.1:4173/robots.txt')
 echo "$staging_header" | tr -d '\r' | grep -qi '^X-Robots-Tag: noindex, nofollow
 
+# In addition to robots.txt, protect SSR HTML from accidental duplicate indexing.
+staging_html_headers=$(curl -s -D - -o /dev/null --header 'Host: lavaner-staging.example.workers.dev' 'http://127.0.0.1:4173/')
+echo "$staging_html_headers" | tr -d '\r' | grep -qi '^X-Robots-Tag: noindex, nofollow
+
+production_html_headers=$(curl -s -D - -o /dev/null --header 'Host: lavaner.ee' --header 'X-Forwarded-Proto: https' 'http://127.0.0.1:4173/')
+if echo "$production_html_headers" | tr -d '\r' | grep -qi '^X-Robots-Tag: noindex'; then
+  echo "Production HTML must stay indexable"
+  exit 1
+fi
 echo "Cloudflare local SSR, routes, SEO XML and media smoke checks passed"
