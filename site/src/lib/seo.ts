@@ -36,6 +36,7 @@ export function buildHead({
     { title },
     { name: "description", content: description },
     { property: "og:title", content: title },
+    { property: "og:site_name", content: "LAVANER" },
     { property: "og:description", content: description },
     { property: "og:type", content: type },
     { property: "og:url", content: url },
@@ -120,9 +121,10 @@ export function organizationJsonLd(lang: Lang) {
     areaServed: [
       { "@type": "City", name: "Tallinn" },
       { "@type": "City", name: "Maardu" },
+      { "@type": "City", name: "Viimsi" },
       { "@type": "AdministrativeArea", name: "Harjumaa" },
       { "@type": "AdministrativeArea", name: "Harju maakond" },
-      { "@type": "Country", name: "Estonia" },
+      // Focus on the actual local service region; countrywide work is not assumed.
     ],
     address: {
       "@type": "PostalAddress",
@@ -130,7 +132,7 @@ export function organizationJsonLd(lang: Lang) {
     },
     foundingDate: "2014",
     availableLanguage: ["et", "ru", "en"],
-    sameAs: [CONTACT.googleBusinessUrl],
+    // Do not use a generic Google search link as a verified sameAs identity URL.
     knowsLanguage: ["et", "ru", "en"],
     slogan: "Ehitus, renoveerimine ja kinnisvara hooldus Tallinnas ning Harjumaal",
   };
@@ -162,8 +164,9 @@ export function serviceJsonLd(opts: {
     areaServed: [
       { "@type": "City", name: "Tallinn" },
       { "@type": "City", name: "Maardu" },
+      { "@type": "City", name: "Viimsi" },
       { "@type": "AdministrativeArea", name: "Harjumaa" },
-      { "@type": "Country", name: "Estonia" },
+      // Focus on the actual local service region; countrywide work is not assumed.
     ],
     availableLanguage: ["et", "ru", "en"],
     inLanguage: HREFLANG[opts.lang],
