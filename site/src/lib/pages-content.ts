@@ -36,7 +36,7 @@ export const HOME: Record<
     h1: "Ehitusfirma Tallinnas ja Harjumaal",
     title: "Ehitusfirma Tallinnas ja Harjumaal — ehitus ja remont | LAVANER OÜ",
     description:
-      "LAVANER OÜ — projekteerimine, ehitus, remont ja hooldus äri- ja eraobjektidele Tallinnas, Harjumaal ja kogu Eestis. Küsi projekti hinnapakkumist.",
+      "Ehitusfirma Tallinnas ja Harjumaal: eramute ehitus, maja ja korteri remont, siseviimistlus, katuse- ja fassaaditööd. Küsi LAVANER OÜ-lt hinnapakkumist.",
     lead: "LAVANER OÜ tegeleb projekteerimise, ehituse, remondi ja hooldusega. Üks meeskond viib objekti ideest valmis tulemuseni — äri- ja eraklientidele.",
     servicesHeading: "Teenused",
     servicesText:
