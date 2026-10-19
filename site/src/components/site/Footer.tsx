@@ -152,6 +152,7 @@ export function Footer() {
           </ul>
           <div className="mt-5 space-y-1 text-xs leading-relaxed text-primary-foreground/45">
             <p>{ui.companyDetails}: <BrandText>{PLACEHOLDERS.legalName}</BrandText></p>
+            <p>{ui.registryCodeLabel}: {PLACEHOLDERS.registryCode}</p>
             <p><BrandText>{ui.sinceBadge}</BrandText></p>
           </div>
         </div>
