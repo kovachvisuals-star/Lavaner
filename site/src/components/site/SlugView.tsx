@@ -26,6 +26,7 @@ import {
 } from "@/lib/i18n";
 import { PAGES, type PageContent } from "@/lib/pages-content";
 import { PHOTOS } from "@/lib/photos";
+import { REAL_MEDIA } from "@/lib/project-media";
 import { PROJECTS, PROJECTS_UI } from "@/lib/projects";
 import type { ServiceKey } from "@/lib/routes-map";
 import {
@@ -52,7 +53,7 @@ const PAGE_PHOTO: Record<PageKey, string> = {
   services: PHOTOS.design04,
   business: PHOTOS.b2bHandover,
   private: PHOTOS.b2cHandover,
-  projects: PHOTOS.hero03,
+  projects: REAL_MEDIA.vannitubaValmis,
   about: PHOTOS.hero02,
   process: PHOTOS.processQuality,
   blog: PHOTOS.design03,
@@ -97,6 +98,7 @@ export function slugHead(lang: Lang, slug: string) {
     resolved,
     title: c.title,
     description: c.description,
+    image: PAGE_PHOTO[resolved.key],
     noindex: NOINDEX_PAGES.includes(resolved.key),
     jsonLd: [
       breadcrumbJsonLd([
