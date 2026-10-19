@@ -7,7 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  preview: { allowedHosts: ["lavaner.ee", "www.lavaner.ee"] },
+  preview: { allowedHosts: ["lavaner.ee", "www.lavaner.ee", ".workers.dev"] },
   plugins: [
     cloudflare({ viteEnvironment: { name: "ssr" } }),
     tanstackStart(),
