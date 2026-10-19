@@ -99,6 +99,7 @@ export function organizationJsonLd(lang: Lang) {
     "@type": ["Organization", "GeneralContractor"],
     "@id": `${SITE_URL}/#organization`,
     name: "LAVANER OÜ",
+    identifier: "12642198",
     email: CONTACT.email,
     telephone: CONTACT.phoneEt,
     contactPoint: [
