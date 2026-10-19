@@ -14,7 +14,7 @@ export const EXTRA_SERVICE_CONTENT: Record<ExtraKey, Record<Lang, ServiceContent
       title: "Katusetööd Tallinnas – remont ja vahetus | LAVANER",
       description:
         "Katuse ehitus, vahetus ja remont Tallinnas ning Harjumaal: katusekate, aluskonstruktsioon, soojustus, vihmaveesüsteem. Küsi pakkumist LAVANER OÜ-lt.",
-      lead: "Teeme katusetöid Tallinnas ja Harjumaal: katuse remont, katusekatte vahetus, sarikate ja roovituse parandamine, soojustamine ning vihmaveerennide paigaldus. Enne pakkumist selgitame objektil välja, kas vaja on osalist remonti või suuremat renoveerimist.",
+      lead: "Teeme katusetöid Tallinnas ja Harjumaal: katuse remont, katusekatte vahetus, sarikate ja roovituse parandamine, soojustamine ning vihmaveerennide paigaldus. Töötame Tallinnas, Maardus, Viimsis ja mujal Harjumaal. Hinnapakkumise koostamiseks kirjeldage katuse tüüpi, ligikaudset pindala, probleemi ja objekti asukohta; võimalusel lisage fotod. Enne tööde alustamist selgitame välja, kas piisab osalisest remondist või on vajalik põhjalikum renoveerimine.",
       forWhom: [
         "Eramaja omanikud, kelle katus lekib või on amortiseerunud",
         "Korteriühistud, kes planeerivad katuse kapitaalremonti",
