@@ -70,6 +70,7 @@ export function primaryPhone(lang: Lang): PhoneLine {
 /** Реальные данные компании. */
 export const PLACEHOLDERS = {
   legalName: "LAVANER OÜ",
+  registryCode: "12642198",
   openingHours: "[OPENING_HOURS]",
   websiteDomain: "lavaner.ee",
   logoUrl: "[LOGO_URL]",
@@ -136,6 +137,7 @@ type UIStrings = {
   footerLegal: string;
   socialPending: string;
   companyDetails: string;
+  registryCodeLabel: string;
   experienceBadge: string;
   inPreparation: string;
   googleProfile: string;
@@ -182,6 +184,7 @@ export const UI: Record<Lang, UIStrings> = {
     footerLegal: "Ettevõtte andmed",
     socialPending: "Sotsiaalmeedia lingid lisatakse peagi.",
     companyDetails: "Ettevõtte andmed",
+    registryCodeLabel: "Registrikood",
     experienceBadge: "Üle 12 aasta kogemust ehitus- ja viimistlustöödes",
     inPreparation: "Ettevalmistamisel",
     googleProfile: "Vaata meid Google'is",
@@ -226,6 +229,7 @@ export const UI: Record<Lang, UIStrings> = {
     footerLegal: "Реквизиты",
     socialPending: "Ссылки на социальные сети будут добавлены.",
     companyDetails: "Реквизиты компании",
+    registryCodeLabel: "Регистрационный код",
     experienceBadge: "Более 12 лет опыта в строительных и отделочных работах",
     inPreparation: "В подготовке",
     googleProfile: "Смотрите нас в Google",
@@ -270,6 +274,7 @@ export const UI: Record<Lang, UIStrings> = {
     footerLegal: "Company details",
     socialPending: "Social media links will be added.",
     companyDetails: "Company details",
+    registryCodeLabel: "Registry code",
     experienceBadge: "Over 12 years of experience in construction and finishing works",
     inPreparation: "In preparation",
     googleProfile: "See us on Google",
