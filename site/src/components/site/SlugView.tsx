@@ -27,6 +27,7 @@ import {
 import { PAGES, type PageContent } from "@/lib/pages-content";
 import { PHOTOS } from "@/lib/photos";
 import { PROJECTS, PROJECTS_UI } from "@/lib/projects";
+import type { ServiceKey } from "@/lib/routes-map";
 import {
   ORDERED_SERVICE_KEYS,
   PAGE_SLUGS,
@@ -161,6 +162,8 @@ function ServicePage({
         </div>
       </Section>
 
+      <ServiceWorkExamples lang={lang} serviceKey={serviceKey} />
+
       <Section muted>
         <SectionTitle title={ui.stages} />
         <StepList items={STAGES[lang]} />
@@ -211,6 +214,69 @@ function ServicePage({
       <CtaBand />
       <MobileCta />
     </>
+  );
+}
+
+const WORK_EXAMPLES_TEXT: Record<Lang, { title: string; intro: string; seeProject: string; more: string }> = {
+  et: {
+    title: "Näited meie tehtud töödest",
+    intro: "Tutvuge fotodega töödest, mis on seotud selle teenusega. Iga näide sisaldab tegelikku tööde kirjeldust.",
+    seeProject: "Vaata objekti",
+    more: "Kõik tehtud tööd",
+  },
+  ru: {
+    title: "Примеры выполненных работ",
+    intro: "Посмотрите реальные объекты, связанные с этой услугой. У каждого примера есть описание выполненных работ.",
+    seeProject: "Посмотреть объект",
+    more: "Все выполненные работы",
+  },
+  en: {
+    title: "Examples of our completed work",
+    intro: "Explore genuine project photos relevant to this service, with details of the work carried out.",
+    seeProject: "View project",
+    more: "All completed works",
+  },
+};
+
+function ServiceWorkExamples({ lang, serviceKey }: { lang: Lang; serviceKey: ServiceKey }) {
+  const matching = PROJECTS.filter((project) => project.services.includes(serviceKey)).slice(0, 3);
+  if (!matching.length) return null;
+  const t = WORK_EXAMPLES_TEXT[lang];
+  return (
+    <Section muted>
+      <SectionTitle title={t.title} text={t.intro} />
+      <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {matching.map((project) => (
+          <article key={project.id} className="overflow-hidden rounded-lg border border-border bg-card">
+            <img
+              src={project.cover.src}
+              alt={project.cover.alt[lang]}
+              loading="lazy"
+              decoding="async"
+              width={800}
+              height={600}
+              className="aspect-[4/3] w-full object-cover"
+            />
+            <div className="p-5">
+              <h3 className="text-lg font-semibold text-foreground">{project.name[lang]}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.description[lang]}</p>
+              <SiteLink
+                to={`${pageUrl(lang, "projects")}#${project.id}`}
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-accent-foreground underline-offset-4 hover:underline"
+              >
+                {t.seeProject} <ArrowRight className="h-4 w-4" />
+              </SiteLink>
+            </div>
+          </article>
+        ))}
+      </div>
+      <SiteLink
+        to={pageUrl(lang, "projects")}
+        className="mt-6 inline-flex items-center gap-2 font-semibold text-accent-foreground hover:underline"
+      >
+        {t.more} <ArrowRight className="h-4 w-4" />
+      </SiteLink>
+    </Section>
   );
 }
 
@@ -414,7 +480,7 @@ function ProjectsBlock({ lang }: { lang: Lang }) {
     <Section>
       <div className="grid gap-8 lg:grid-cols-2">
         {PROJECTS.map((p) => (
-          <article key={p.id} className="overflow-hidden rounded-lg border border-border bg-card">
+          <article id={p.id} key={p.id} className="scroll-mt-24 overflow-hidden rounded-lg border border-border bg-card">
             <img
               src={p.cover.src}
               alt={p.cover.alt[lang]}
@@ -470,6 +536,17 @@ function ProjectsBlock({ lang }: { lang: Lang }) {
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.description[lang]}</p>
               <h3 className="mt-5 text-sm font-semibold text-foreground">{t.works}</h3>
               <CheckList items={p.works[lang]} />
+              <div className="mt-5 flex flex-wrap gap-2" aria-label={UI[lang].relatedServices}>
+                {p.services.map((key) => (
+                  <SiteLink
+                    key={key}
+                    to={serviceUrl(lang, key)}
+                    className="rounded border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-accent hover:text-accent-foreground"
+                  >
+                    {SERVICE_CONTENT[key][lang].h1}
+                  </SiteLink>
+                ))}
+              </div>
 
               {p.gallery?.length ? (
                 <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
