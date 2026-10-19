@@ -11,10 +11,10 @@ export const EXTRA_SERVICE_CONTENT: Record<ExtraKey, Record<Lang, ServiceContent
   roof: {
     et: {
       h1: "Katusetööd Tallinnas ja Harjumaal",
-      title: "Katusetööd Tallinnas ja Harjumaal | LAVANER OÜ",
+      title: "Katusetööd Tallinnas – remont ja vahetus | LAVANER",
       description:
         "Katuse ehitus, vahetus ja remont Tallinnas ning Harjumaal: katusekate, aluskonstruktsioon, soojustus, vihmaveesüsteem. Küsi pakkumist LAVANER OÜ-lt.",
-      lead: "Ehitame ja remondime katuseid Tallinnas, Harjumaal ja lähiümbruses. Vahetame katusekatte, parandame roovituse ja sarikad, paigaldame soojustuse ning vihmaveesüsteemi.",
+      lead: "Teeme katusetöid Tallinnas ja Harjumaal: katuse remont, katusekatte vahetus, sarikate ja roovituse parandamine, soojustamine ning vihmaveerennide paigaldus. Enne pakkumist selgitame objektil välja, kas vaja on osalist remonti või suuremat renoveerimist.",
       forWhom: [
         "Eramaja omanikud, kelle katus lekib või on amortiseerunud",
         "Korteriühistud, kes planeerivad katuse kapitaalremonti",
@@ -27,7 +27,7 @@ export const EXTRA_SERVICE_CONTENT: Record<ExtraKey, Record<Lang, ServiceContent
         "Puuduv või vale soojustus ja ventilatsioon katuslaes",
       ],
       includes: [
-        "Katuse ülevaatus ja seisukorra hindamine objektil",
+        "Katuse ülevaatus, lekkekohtade ja kahjustuste hindamine enne tööde alustamist",
         "Vana katusekatte demonteerimine ja utiliseerimine",
         "Sarikate, roovituse ja aluskatte taastamine või vahetus",
         "Plekk-, kivi-, bituumen- ja lamekatuse katted",
@@ -40,8 +40,8 @@ export const EXTRA_SERVICE_CONTENT: Record<ExtraKey, Record<Lang, ServiceContent
           a: "Jah. Tuleme objektile Tallinnas või Harjumaal kohale, hindame katuse seisukorra ja alles seejärel koostame kirjaliku hinnapakkumise.",
         },
         {
-          q: "Kas remondite ka osaliselt või ainult terve katuse?",
-          a: "Teeme mõlemat. Kui konstruktsioon on korras, piisab sageli katte või sõlmede remondist; kui kandekonstruktsioon on kahjustatud, soovitame katuse täielikku uuendamist.",
+          q: "Kas teete katuse remonti või on vajalik kogu katuse vahetus?",
+          a: "Katuse remont võib piirduda üksikute sõlmede, lekkekohtade või katusekatte parandamisega. Katuse vahetuse vajaduse selgitame välja pärast sarikate, aluskatte ja katusekatte ülevaatust.",
         },
         {
           q: "Millal on katusetöid kõige mõistlikum teha?",
@@ -137,7 +137,7 @@ export const EXTRA_SERVICE_CONTENT: Record<ExtraKey, Record<Lang, ServiceContent
       title: "Fassaaditööd Tallinnas ja Harjumaal | LAVANER OÜ",
       description:
         "Fassaadi soojustamine, krohvimine, voodrivahetus ja välisviimistlus Tallinnas ning Harjumaal. LAVANER OÜ teeb fassaaditööd ühe meeskonnaga.",
-      lead: "Soojustame ja viimistleme fassaade: krohv, puit- ja plaatvoodrid, sokkel ning välisviimistluse remont. Töötame Tallinnas, Harjumaal ja kokkuleppel mujal Eestis.",
+      lead: "Teeme fassaaditöid Tallinnas ja Harjumaal: fassaadi soojustamine, krohvimine, puitvoodri paigaldus, sokli viimistlus ja välisviimistluse remont. Sobiva lahenduse ja tööde mahu määrame maja seisukorra järgi.",
       forWhom: [
         "Eramajade omanikud, kes soovivad hoone soojemaks ja korrastatuks muuta",
         "Korteriühistud, kes plaanivad fassaadi renoveerimist",
@@ -260,7 +260,7 @@ export const EXTRA_SERVICE_CONTENT: Record<ExtraKey, Record<Lang, ServiceContent
       title: "Vannitoa remont Tallinnas | LAVANER OÜ",
       description:
         "Vannitoa täisremont Tallinnas: lammutus, hüdroisolatsioon, plaatimine, torustik ja elektritööd ühe meeskonnaga. Küsi hinnapakkumist LAVANER OÜ-lt.",
-      lead: "Teeme vannitoa remondi Tallinnas ja Harjumaal algusest lõpuni: lammutus, hüdroisolatsioon, torustik, elekter, plaatimine ja sisustuse paigaldus.",
+      lead: "Teeme vannitoa remonti Tallinnas ja Harjumaal: vana vannitoa lammutus, vee- ja kanalisatsioonitorude vahetus, hüdroisolatsioon, plaatimistööd, valgustus ning sanitaartehnika paigaldus. Tööde kestus ja hind sõltuvad vannitoa seisukorrast.",
       forWhom: [
         "Korteriomanikud, kelle vannituba on vana või lekib",
         "Eramaja omanikud, kes soovivad vannituba ümber planeerida",
