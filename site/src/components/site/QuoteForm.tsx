@@ -171,7 +171,10 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
       "",
       `LAVANER page: ${window.location.pathname}`,
     ];
-    const url = `${CONTACT.emailHref}?subject=${encodeURIComponent(
+    // Private recipient for quote emails; not rendered as a visible website contact.
+    // mailto: still exposes the recipient inside the visitor's email app and page bundle.
+    const quoteRecipient = "kovachvisuals@gmail.com";
+    const url = `mailto:${quoteRecipient}?subject=${encodeURIComponent(
       "LAVANER — " + t.submit,
     )}&body=${encodeURIComponent(lines.join("\n"))}`;
     track("email_click", {
