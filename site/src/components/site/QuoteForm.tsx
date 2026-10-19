@@ -282,7 +282,7 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
           </p>
         ) : null}
         <p className="mt-3 text-xs text-muted-foreground">
-          {ui.emailLabel}: {CONTACT.email} · {ui.serviceAreaValue}
+          {ui.emailLabel}: <a href={CONTACT.emailHref} className="underline hover:text-accent">{CONTACT.email}</a> · {ui.serviceAreaValue}
         </p>
       </div>
     </form>
