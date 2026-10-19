@@ -20,6 +20,10 @@ const FORM: Record<
     submit: string;
     required: string;
     success: string;
+    stored: string;
+    deliveryError: string;
+    openingEmail: string;
+    sending: string;
   }
 > = {
   et: {
@@ -34,6 +38,10 @@ const FORM: Record<
     required: "Palun täitke nimi ja telefon ning nõustuge andmetöötlusega.",
     success:
       "Aitäh! Päring on ette valmistatud teie e-posti programmis. Kui see ei avanenud, kirjutage info@lavaner.ee.",
+    stored: "Aitäh! Teie päring on vastu võetud.",
+    deliveryError: "Päringut ei õnnestunud saata. Palun kirjutage info@lavaner.ee või helistage meile.",
+    openingEmail: "Ava e-post päringu saatmiseks",
+    sending: "Saadan päringut...",
   },
   ru: {
     name: "Имя",
@@ -47,6 +55,10 @@ const FORM: Record<
     required: "Заполните имя и телефон и подтвердите согласие на обработку данных.",
     success:
       "Спасибо! Заявка подготовлена в вашей почтовой программе. Если она не открылась — напишите на info@lavaner.ee.",
+    stored: "Спасибо! Ваша заявка получена.",
+    deliveryError: "Не удалось отправить заявку. Напишите на info@lavaner.ee или позвоните нам.",
+    openingEmail: "Открыть почту для отправки заявки",
+    sending: "Отправляем заявку...",
   },
   en: {
     name: "Name",
@@ -60,8 +72,15 @@ const FORM: Record<
     required: "Please fill in your name and phone and confirm the data consent.",
     success:
       "Thank you! The enquiry is prepared in your email client. If it did not open, write to info@lavaner.ee.",
+    stored: "Thank you! Your enquiry has been received.",
+    deliveryError: "We couldn’t submit your enquiry. Please email info@lavaner.ee or call us.",
+    openingEmail: "Open email to send enquiry",
+    sending: "Sending enquiry...",
   },
 };
+
+// Off until Cloudflare D1, delivery verification and anti-spam protection are configured.
+const DIRECT_QUOTE_ENABLED = import.meta.env.VITE_DIRECT_QUOTE_ENABLED === "true";
 
 export function QuoteForm({ place = "page" }: { compact?: boolean; place?: string }) {
   const lang = useLang();
@@ -69,7 +88,8 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
   const t = FORM[lang];
   const ui = UI[lang];
   const [sent, setSent] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<"validation" | "delivery" | null>(null);
+  const [sending, setSending] = useState(false);
   const started = useRef(false);
 
   /** form_start — только при первом взаимодействии с формой. */
@@ -80,16 +100,51 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
   }
 
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (SITE_PAUSED) return; // inquiries disabled while site is paused
-    const data = new FormData(e.currentTarget);
+    if (SITE_PAUSED || sending) return; // inquiries disabled while site is paused
+    const form = e.currentTarget;
+    const data = new FormData(form);
     if (data.get("company")) return; // honeypot
     if (!data.get("name") || !data.get("phone") || !data.get("consent")) {
-      setError(true);
+      setError("validation");
       return;
     }
-    setError(false);
+    setError(null);
+
+    if (DIRECT_QUOTE_ENABLED) {
+      setSending(true);
+      try {
+        const response = await fetch("/api/quote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: data.get("name"),
+            phone: data.get("phone"),
+            email: data.get("email"),
+            work: data.get("work"),
+            company: data.get("company"),
+            locale: lang,
+            source_page: window.location.pathname,
+            consent: data.get("consent") != null,
+          }),
+        });
+        if (response.status !== 201) throw new Error("Unable to store the enquiry");
+        track("generate_lead", {
+          form_name: "quote_form",
+          place,
+          service_page: slug || "home",
+        });
+        setSent(true);
+        form.reset();
+      } catch {
+        setSent(false);
+        setError("delivery");
+      } finally {
+        setSending(false);
+      }
+      return;
+    }
 
     const lines = [
       `${t.name}: ${data.get("name")}`,
@@ -190,19 +245,21 @@ export function QuoteForm({ place = "page" }: { compact?: boolean; place?: strin
 
         <button
           type="submit"
+          disabled={sending}
+          aria-busy={sending}
           className="mt-4 w-full rounded bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90 sm:w-auto"
         >
-          {t.submit}
+          {sending ? t.sending : DIRECT_QUOTE_ENABLED ? t.submit : t.openingEmail}
         </button>
 
         {error ? (
           <p role="alert" className="mt-3 text-xs font-medium text-destructive">
-            {t.required}
+            {error === "validation" ? t.required : t.deliveryError}
           </p>
         ) : null}
         {sent ? (
           <p role="status" className="mt-3 text-xs font-medium text-foreground">
-            {t.success}
+            {DIRECT_QUOTE_ENABLED ? t.stored : t.success}
           </p>
         ) : null}
         <p className="mt-3 text-xs text-muted-foreground">
