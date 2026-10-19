@@ -56,6 +56,15 @@ const quote = await readFile(resolve(root, "src/components/site/QuoteForm.tsx"),
 check(quote.includes('track("email_click"'), "Missing honest mailto click event");
 check(quote.includes('DIRECT_QUOTE_ENABLED'), "Missing opt-in direct quote feature flag");
 check(!quote.includes('track("generate_lead", {\n      form_name'), "A mailto click may be incorrectly recorded as generated lead");
+check(quote.includes('useId()') && quote.includes('htmlFor={`\u0024{formId}-name`}') && quote.includes('id={`\u0024{formId}-name`}'), "Quote fields should have unique label/input IDs");
+check(quote.includes('track("form_submit_error"'), "Missing form failure measurement");
+check(quote.includes('phone.href') && quote.includes('CONTACT.emailHref'), "Quote form is missing phone or email fallback");
+const analytics = await readFile(resolve(root, "src/lib/analytics.ts"), "utf8");
+check(analytics.includes('"form_submit_error"'), "Missing form_submit_error analytics type");
+check(!analytics.includes('form_submit: "generate_lead"'), "Generic form submits may be incorrectly counted as leads");
+const i18n = await readFile(resolve(root, "src/lib/i18n.ts"), "utf8");
+check(!i18n.includes("Teenindame kliente üle Eesti") && !i18n.includes("Обслуживаем клиентов по всей Эстонии") && !i18n.includes("We serve clients across Estonia"), "Service-area translations disagree with Tallinn/Harjumaa focus");
+
 const workers = await readFile(resolve(root, "wrangler.jsonc"), "utf8");
 check(workers.includes('"lavaner-staging"'), "No separate Cloudflare staging worker name");
 const result = { publicUrls: publicRoutes.length, languages: LANGS, serviceTypes: SERVICE_KEYS.length, archivedMedia: descriptors.length, mediaMB: +(mediaBytes/1048576).toFixed(2), failures };
