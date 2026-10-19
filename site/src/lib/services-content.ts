@@ -358,7 +358,7 @@ const BASE_SERVICE_CONTENT = {
       title: "Maja renoveerimine Tallinnas ja Harjumaal | LAVANER OÜ",
       description:
         "Eramute ja ridaelamute renoveerimine Tallinnas ja Harjumaal: sise- ja välistööd, tehnosüsteemid ning viimistlus. Küsi hinnapakkumist.",
-      lead: "Renoveerime eramaju, vanemaid maju ja ridaelamuid Tallinnas ning Harjumaal. Vaatame üle konstruktsioonid ja tehnosüsteemid, planeerime remondietapid ning viime sise- ja välisviimistluse ühe tööplaani alla.",
+      lead: "Renoveerime eramaju, vanemaid maju ja ridaelamuid Tallinnas, Maardus ning mujal Harjumaal. Vaatame üle konstruktsioonid ja tehnosüsteemid, planeerime remondietapid ning viime sise- ja välisviimistluse ühe tööplaani alla.",
       forWhom: [
         "Majaomanikud, kes plaanivad täisremonti",
         "Vanema maja omanikud, kes soovivad seda kaasajastada",
@@ -1075,7 +1075,7 @@ const BASE_SERVICE_CONTENT = {
   finishing: {
     et: {
       h1: "Siseviimistlustööd Tallinnas ja Harjumaal",
-      title: "Siseviimistlustööd Tallinnas ja Harjumaal | LAVANER",
+      title: "Siseviimistlustööd Tallinnas ja Harjumaal | LAVANER OÜ",
       description:
         "Siseviimistlustööd Tallinnas ja Harjumaal: seinte ja lagede viimistlus, värvimine, põrandad ning plaatimistööd. Küsi LAVANER OÜ-lt hinnapakkumist.",
       lead: "Teeme siseviimistlustöid Tallinnas, Maardus ja mujal Harjumaal korterites, eramutes ning äripindadel. Tööde hulka kuuluvad maalritööd, pahteldamine, seinte ja lagede värvimine, plaatimistööd ning põrandate paigaldus. Kirjelda objekti asukohta ja tööde mahtu – koostame hinnapakkumise pärast vajaduse korral tehtavat ülevaatust.",
