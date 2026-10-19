@@ -61,7 +61,7 @@ export const HOME: Record<
     h1: "Строительство, ремонт и проектирование в Эстонии",
     title: "Строительство, ремонт и проектирование в Эстонии | LAVANER OÜ",
     description:
-      "LAVANER OÜ — проектирование, строительство, ремонт и обслуживание коммерческих и частных объектов в Таллинне, Харьюмаа и по всей Эстонии.",
+      "LAVANER OÜ — проектирование, строительство, ремонт и обслуживание коммерческих и частных объектов в Таллинне, Маарду, Виймси и Харьюмаа.",
     lead: "LAVANER OÜ занимается проектированием, строительством, ремонтом и обслуживанием объектов. Одна команда ведёт объект от идеи до готового результата — для бизнеса и частных клиентов.",
     servicesHeading: "Услуги",
     servicesText:
@@ -86,7 +86,7 @@ export const HOME: Record<
     h1: "Construction, renovation and design in Estonia",
     title: "Construction, Renovation and Design in Estonia | LAVANER OÜ",
     description:
-      "LAVANER OÜ — design, construction, renovation and maintenance for commercial and private properties in Tallinn, Harjumaa and across Estonia.",
+      "LAVANER OÜ — design, construction, renovation and maintenance for commercial and private properties in Tallinn, Maardu, Viimsi and Harjumaa.",
     lead: "LAVANER OÜ delivers design, construction, renovation and maintenance. One team takes the property from idea to finished result — for businesses and private clients.",
     servicesHeading: "Services",
     servicesText: "From design and planning to construction, finishing and ongoing maintenance.",
@@ -442,7 +442,7 @@ export const PAGES: Record<PageKey, Record<Lang, PageContent>> = {
       title: "Ettevõttest | LAVANER OÜ",
       description:
         "LAVANER OÜ on Eestis tegutsev ehitus- ja remondiettevõte: projekteerimine, ehitus, remont ja hooldus äri- ning eraobjektidele.",
-      lead: "LAVANER OÜ pakub projekteerimist, ehitust, remonti ja hooldust ühe ettevõttena. Töötame Tallinnas, Harjumaal ja kogu Eestis ning suhtleme eesti, vene ja inglise keeles.",
+      lead: "LAVANER OÜ pakub projekteerimist, ehitust, remonti ja hooldust ühe ettevõttena. Töötame Tallinnas, Maardus, Viimsis ja Harjumaal ning suhtleme eesti, vene ja inglise keeles.",
       blocks: [
         {
           heading: "Kuidas me töötame",
@@ -464,7 +464,7 @@ export const PAGES: Record<PageKey, Record<Lang, PageContent>> = {
       title: "О компании | LAVANER OÜ",
       description:
         "LAVANER OÜ — строительная и ремонтная компания в Эстонии: проектирование, строительство, ремонт и обслуживание коммерческих и частных объектов.",
-      lead: "LAVANER OÜ выполняет проектирование, строительство, ремонт и обслуживание как одна компания. Работаем в Таллинне, Харьюмаа и по всей Эстонии, общаемся на эстонском, русском и английском.",
+      lead: "LAVANER OÜ выполняет проектирование, строительство, ремонт и обслуживание как одна компания. Работаем в Таллинне, Маарду, Виймси и Харьюмаа, общаемся на эстонском, русском и английском.",
       blocks: [
         {
           heading: "Как мы работаем",
@@ -486,7 +486,7 @@ export const PAGES: Record<PageKey, Record<Lang, PageContent>> = {
       title: "About the Company | LAVANER OÜ",
       description:
         "LAVANER OÜ is a construction and renovation company in Estonia: design, construction, renovation and maintenance for commercial and private properties.",
-      lead: "LAVANER OÜ delivers design, construction, renovation and maintenance as one company. We work in Tallinn, Harjumaa and across Estonia, in Estonian, Russian and English.",
+      lead: "LAVANER OÜ delivers design, construction, renovation and maintenance as one company. We work in Tallinn, Maardu, Viimsi and Harjumaa, in Estonian, Russian and English.",
       blocks: [
         {
           heading: "How we work",
@@ -594,7 +594,7 @@ export const PAGES: Record<PageKey, Record<Lang, PageContent>> = {
       h1: "Kontakt",
       title: "Kontakt | LAVANER OÜ Tallinn",
       description:
-        "Võta LAVANER OÜ-ga ühendust: telefon, e-post ja päringuvorm. Teenindame Tallinnas, Harjumaal ja kogu Eestis.",
+        "Võta LAVANER OÜ-ga ühendust: telefon, e-post ja päringuvorm. Teenindame Tallinnas, Maardus, Viimsis ja Harjumaal.",
       lead: "Kirjuta või helista — vaatame objekti üle ja koostame pakkumise koos etappide, tähtaegade ja maksumusega.",
       blocks: [],
     },
@@ -602,7 +602,7 @@ export const PAGES: Record<PageKey, Record<Lang, PageContent>> = {
       h1: "Контакты",
       title: "Контакты | LAVANER OÜ Таллинн",
       description:
-        "Свяжитесь с LAVANER OÜ: телефон, e-mail и форма заявки. Работаем в Таллинне, Харьюмаа и по всей Эстонии.",
+        "Свяжитесь с LAVANER OÜ: телефон, e-mail и форма заявки. Работаем в Таллинне, Маарду, Виймси и Харьюмаа.",
       lead: "Напишите или позвоните — осмотрим объект и подготовим предложение с этапами, сроками и стоимостью.",
       blocks: [],
     },
@@ -610,7 +610,7 @@ export const PAGES: Record<PageKey, Record<Lang, PageContent>> = {
       h1: "Contact",
       title: "Contact | LAVANER OÜ Tallinn",
       description:
-        "Get in touch with LAVANER OÜ: phone, email and enquiry form. We work in Tallinn, Harjumaa and across Estonia.",
+        "Get in touch with LAVANER OÜ: phone, email and enquiry form. We work in Tallinn, Maardu, Viimsi and Harjumaa.",
       lead: "Write or call — we will review the property and prepare a proposal with stages, timeline and cost.",
       blocks: [],
     },
