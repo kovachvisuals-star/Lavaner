@@ -238,7 +238,7 @@ const BASE_SERVICE_CONTENT = {
       title: "Korteri remont Tallinnas | LAVANER OÜ",
       description:
         "Korterite täisremont Tallinnas ja Harjumaal: lammutus, tehnosüsteemid, viimistlus ja üleandmine. Üks meeskond kogu töö vältel.",
-      lead: "Teeme korterite täisremonti Tallinnas ja Harjumaal — alates ettevalmistusest ja tehnotöödest kuni viimistluse ja koristatud, kasutusvalmis korteri üleandmiseni.",
+      lead: "Teeme korteri remonti ja täisrenoveerimist Tallinnas ning Harjumaal: vajalik lammutus, elektri- ja torutööd, vannitoa remont, siseviimistlus ning üleandmine. Koostame tööde järjekorra ja hinnapakkumise konkreetse korteri põhjal.",
       forWhom: [
         "Korteriomanikud, kes soovivad täisremonti ühe partneriga",
         "Uue arenduskorteri omanikud, kes vajavad siseviimistlust",
@@ -358,7 +358,7 @@ const BASE_SERVICE_CONTENT = {
       title: "Maja renoveerimine Tallinnas ja Harjumaal | LAVANER OÜ",
       description:
         "Eramute ja ridaelamute renoveerimine Tallinnas ja Harjumaal: sise- ja välistööd, tehnosüsteemid ning viimistlus. Küsi hinnapakkumist.",
-      lead: "Teeme eramajade, ridaelamute ja suvilate remonti ning renoveerimist: korraldame kõik etapid ühe meeskonnaga ja hoiame objekti kontrolli all algusest lõpuni.",
+      lead: "Renoveerime eramaju, vanemaid maju ja ridaelamuid Tallinnas ning Harjumaal. Vaatame üle konstruktsioonid ja tehnosüsteemid, planeerime remondietapid ning viime sise- ja välisviimistluse ühe tööplaani alla.",
       forWhom: [
         "Majaomanikud, kes plaanivad täisremonti",
         "Vanema maja omanikud, kes soovivad seda kaasajastada",
@@ -1078,7 +1078,7 @@ const BASE_SERVICE_CONTENT = {
       title: "Siseviimistlustööd Tallinnas ja Harjumaal | LAVANER",
       description:
         "Siseviimistlustööd Tallinnas ja Harjumaal: seinte ja lagede viimistlus, värvimine, põrandad ning plaatimistööd. Küsi LAVANER OÜ-lt hinnapakkumist.",
-      lead: "Teostame sise- ja välisviimistlust, pöörates tähelepanu detailidele ja lõpptulemusele: seinad, laed, põrandad, plaatimine, värvimine ja dekoratiivkatted.",
+      lead: "Teeme siseviimistlust Tallinnas ja Harjumaal korterites, eramutes ja äripindadel. Tööde hulka kuuluvad maalritööd, pahteldamine, seinte ja lagede värvimine, plaatimistööd ning põrandate paigaldus. Tööde mahu ja hinnapakkumise lepime kokku pärast objekti ülevaatust.",
       forWhom: [
         "Kliendid, kellel on ehitus- või remonditööd lõppjärgus",
         "Korteri- ja majaomanikud",
@@ -1090,17 +1090,17 @@ const BASE_SERVICE_CONTENT = {
         "Objekti ettevalmistus kasutuselevõtuks",
       ],
       includes: [
-        "Pindade ettevalmistus ja pahteldamine",
-        "Värvimine ja dekoratiivkatted",
-        "Plaatimine ja põrandakatted",
+        "Seinte ja lagede ettevalmistus, krohvimine ning pahteldamine",
+        "Maalritööd: kruntimine, värvimine ja dekoratiivkatted",
+        "Plaatimistööd, põrandakatete paigaldus ja viimistlus",
         "Lae- ja seinalahendused",
         "Välisviimistluse tööd",
         "Kvaliteedi ülevaatus lõikude kaupa",
       ],
       faq: [
         {
-          q: "Kas teete ainult viimistlust?",
-          a: "Jah, viimistlustöid saab tellida eraldi kogu remondist.",
+          q: "Kas siseviimistlustöid saab tellida eraldi korteri täisremondist?",
+          a: "Jah. Tallinnas ja Harjumaal saab tellida eraldi maalri-, pahteldus-, plaatimis- või põrandatöid. Tööde ulatuse ja hinna täpsustame pärast objekti hindamist.",
         },
         {
           q: "Kas parandate teiste tehtud vigu?",
