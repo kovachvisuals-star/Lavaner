@@ -38,9 +38,9 @@ export type SalesContent = {
 
 export const SALES: Record<Lang, SalesContent> = {
   et: {
-    heroTitle: "Ehitus, renoveerimine ja kinnisvara hooldus Tallinnas ning Harjumaal",
+    heroTitle: "Ehitusfirma Tallinnas ja Harjumaal – ehitustööd ja remont",
     heroText:
-      "Ehitame ja renoveerime eramuid, teostame katuse-, fassaadi-, siseviimistlus- ja tehnosüsteemide töid ning teenindame ärikinnisvara.",
+      "LAVANER OÜ teeb eramute ehitust, majade ja korterite renoveerimist ning katuse-, fassaadi- ja siseviimistlustöid Tallinnas ja Harjumaal. Tutvu meie tehtud töödega ja küsi projekti hinnapakkumist.",
     heroPoints: [
       "Üle 12 aasta kogemust",
       "Suured objektid ja pikaajaline hooldus",
