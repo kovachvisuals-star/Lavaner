@@ -1,0 +1,18 @@
+name: Audit all 78 LAVANER sitemap URLs
+on:
+  pull_request:
+    paths: ['site/scripts/audit-full-sitemap.mjs', '.github/workflows/audit-full-sitemap.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  full-sitemap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read-only check of every published sitemap URL
+        run: node site/scripts/audit-full-sitemap.mjs
