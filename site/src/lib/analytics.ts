@@ -24,6 +24,7 @@ export type TrackEvent =
   | "page_view"
   | "generate_lead"
   | "form_start"
+  | "form_submit_error"
   | "phone_click"
   | "email_click"
   | "quote_cta_click"
@@ -40,7 +41,8 @@ export type TrackEvent =
 
 /** Легаси-имена → официальные события GA4 (без дублей). */
 const EVENT_ALIASES: Partial<Record<TrackEvent, TrackEvent>> = {
-  form_submit: "generate_lead",
+  // A generic form_submit event is not proof a lead was received.
+  // Only the successful server-side receipt sends generate_lead.
   cta_click: "quote_cta_click",
   lang_switch: "language_change",
 };
